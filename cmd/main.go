@@ -5,22 +5,21 @@ import (
 	"fmt"
 
 	"github.com/blck-snwmn/gocover/crypto"
-	"github.com/blck-snwmn/gocover/decrypt"
 )
 
 type P struct {
 	crypto crypto.P
 	// coverage 100% if blck-snwmn/gocover/decrypt doesn't exist
-	decrypt decrypt.P
+	// decrypt decrypt.P
 }
 
 func (p P) Crypto(b []byte) []byte {
 	return p.crypto.Crypto(b)
 }
 
-func (p P) Decrypt(b []byte) []byte {
-	return p.decrypt.Decrypt(b)
-}
+// func (p P) Decrypt(b []byte) []byte {
+// 	return p.decrypt.Decrypt(b)
+// }
 
 func main() {
 	p := P{}

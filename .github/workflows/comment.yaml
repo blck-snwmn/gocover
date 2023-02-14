@@ -16,5 +16,7 @@ jobs:
           go test ./... -coverprofile cover.out
           go tool cover -func cover.out > result
       - name: Comment
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           gh pr comment ${{ github.event.pull_request.number }} -F ./result --repo ${{ github.repository }}

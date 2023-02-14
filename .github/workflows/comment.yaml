@@ -1,11 +1,10 @@
-name: Go test&lint
+name: Comment
 
 on:
   pull_request:
 
 jobs:
   coverage:
-    name: go test
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3

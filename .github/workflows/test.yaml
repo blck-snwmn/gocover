@@ -16,21 +16,6 @@ jobs:
       - name: Run test
         run: |
           go test ./... --shuffle on
-  coverage:
-    name: go test
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-go@v3
-        with:
-          go-version-file: "go.mod"
-      - name: Run test coverage
-        run: |
-          go test ./... -coverprofile cover.out
-          go tool cover -func cover.out > result
-      - name: Comment
-        run: |
-          gh pr comment ${{ github.event.pull_request.number }} -F ./result --repo ${{ github.repository }}
   lint:
     name: go test
     runs-on: ubuntu-latest

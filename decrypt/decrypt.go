@@ -11,6 +11,6 @@ func decrypt(b []byte) []byte {
 
 type P struct{}
 
-func (P) decrypt(b []byte) []byte {
+func (P) Decrypt(b []byte) []byte {
 	return decrypt(b)
 }

@@ -11,6 +11,6 @@ func crypto(b []byte) []byte {
 
 type P struct{}
 
-func (P) crypto(b []byte) []byte {
+func (P) Crypto(b []byte) []byte {
 	return crypto(b)
 }

@@ -14,12 +14,20 @@ jobs:
       - name: Run test coverage
         run: |
           go test ./... -coverprofile cover.out
-          go tool cover -func cover.out > result
-      - name: Comment
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          gh pr comment ${{ github.event.pull_request.number }} -F ./result --repo ${{ github.repository }}
+      - uses: actions/github-script@v6
+        with:
+          github-token: ${{ github.token }}
+          script: |
+            const output = `\`\`\`go test cover\n
+            ${ go tool cover -func cover.out}
+            \`\`\`
+            *Pushed by: @${{ github.actor }}, Action: \`${{ github.event_name }}\`*`;
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: output
+            })
   coverage-using-covdata:
     runs-on: ubuntu-latest
     steps:

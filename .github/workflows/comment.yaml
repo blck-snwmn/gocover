@@ -15,9 +15,9 @@ jobs:
         run: |
           go test ./... -coverprofile cover.out
           echo "go test" >> result
-          echo "```" >> result
+          echo '```' >> result
           go tool cover -func cover.out >> result
-          echo "```" >> result
+          echo '```' >> result
       - name: Comment
         env:
           GH_TOKEN: ${{ github.token }}
@@ -36,9 +36,9 @@ jobs:
           mkdir cov
           GOCOVERDIR=cov ./main
           echo "covdata" >> result
-          echo "```" >> result
+          echo '```' >> result
           go tool covdata func -i cov >> result
-          echo "```" >> result
+          echo '```' >> result
       - name: Comment
         env:
           GH_TOKEN: ${{ github.token }}

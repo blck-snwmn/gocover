@@ -28,6 +28,7 @@ jobs:
       - name: Run test coverage
         run: |
           go build -cover cmd/main.go 
+          mkdir cov
           GOCOVERDIR=cov ./main
           go tool covdata func -i cov > result
       - name: Comment

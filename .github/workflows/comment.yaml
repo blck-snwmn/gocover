@@ -20,3 +20,21 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           gh pr comment ${{ github.event.pull_request.number }} -F ./result --repo ${{ github.repository }}
+  coverage-using-covdata:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-go@v3
+        with:
+          go-version-file: "go.mod"
+      - name: Run test coverage
+        run: |
+          go build -cover cmd/main.go 
+          mkdir cov
+          GOCOVERDIR=cov ./main
+          go tool covdata func -i cov > result
+      - name: Comment
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh pr comment ${{ github.event.pull_request.number }} -F ./result --repo ${{ github.repository }}

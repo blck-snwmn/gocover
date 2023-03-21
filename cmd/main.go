@@ -24,6 +24,6 @@ func (p P) Decrypt(b []byte) []byte {
 
 func main() {
 	p := P{}
-	c := p.Crypto([]byte("64787530818579737b3072827f877e30767f88307a857d8083307f8675823071307c718a8930747f773e"))
+	c := p.Crypto([]byte("v4787530818579737b3072827f877e30767f88307a857d8083307f8675823071307c718a8930747f773e"))
 	fmt.Println(hex.EncodeToString(c))
 }

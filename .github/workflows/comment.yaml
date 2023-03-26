@@ -46,4 +46,4 @@ jobs:
           gh pr comment ${{ github.event.pull_request.number }} -F ./result --repo ${{ github.repository }}
       - name: Summary
         run: |
-          echo ./result >> $GITHUB_STEP_SUMMARY
+          cat ./result >> $GITHUB_STEP_SUMMARY

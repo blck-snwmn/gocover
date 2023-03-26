@@ -23,6 +23,9 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           gh pr comment ${{ github.event.pull_request.number }} -F ./result --repo ${{ github.repository }}
+      - name: Summary
+        run: |
+          cat ./result >> $GITHUB_STEP_SUMMARY
   coverage-using-covdata:
     runs-on: ubuntu-latest
     steps:
